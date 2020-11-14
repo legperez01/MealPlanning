@@ -10,6 +10,7 @@ import com.food.service.FoodService;
 import java.util.List;
 import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Luis
  */
+@RefreshScope
 @RestController
 @RequestMapping("/food")
 public class FoodController {
