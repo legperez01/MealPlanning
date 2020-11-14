@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql   
+    ports:
+      - '3306:3306'   
+    expose: 
+      - '3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=food
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+
+  server:
+    image: legperez/food-server
+    build:
+      context: ./FoodServer
+      dockerfile: Dockerfile.dev
+    ports: 
+      - '8080:8080'  
+    volumes:
+      - m2:/root/.m2
+    depends_on: 
+      - mysql
+    links: 
+      - 'mysql:mysql'
+  
+  client:
+    image: legperez/food-client
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./food-web  
+    ports: 
+      - '3000:3000' 
+    stdin_open: true
+    tty: true
+    volumes: 
+      - /app/node_modules
+      - ./food-web:/app
+    depends_on: 
+      - server
+    
+    nginx:
+        restart: always
+        build: 
+            dockerfile: Dockerfile.dev
+            context: ./nginx       
+        ports: 
+            - '3050:80'
+      
+volumes:
+  m2:
+  mysql-data:
