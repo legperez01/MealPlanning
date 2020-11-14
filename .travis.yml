@@ -15,6 +15,7 @@ after_success:
     - docker push legperez/food-nginx
     - docker push legperez/food-server
 
+language: generic
 deploy:
     provider: elasticbeanstalk
     region: us-east-2
