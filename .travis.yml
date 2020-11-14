@@ -1,0 +1,28 @@
+sudo: required
+services:
+    - docker
+
+# buil proccess after install
+after_success:
+    - docker build -t legperez/food-client ./food-web
+    - docker build -t legperez/food-nginx ./nginx
+    - docker build -t legperez/food-server ./FoodServer
+    
+# Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to docker hub
+    - docker push legperez/food-client
+    - docker push legperez/food-nginx
+    - docker push legperez/food-server
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: MealPlanning
+    env: MealPlanning-env
+    bucket_name: elasticbeanstalk-us-east-2-977202846556
+    bucket_path: MealPlanning
+    on:
+        branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
