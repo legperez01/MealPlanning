@@ -2,7 +2,7 @@ import Axios from "axios";
 import Meal from "../entity/Meal";
 
 class FoodClient {
-  private static url = "http://localhost:8080/";
+  private static url = "api/";
 
   private static getFoodURL() {
     return this.url + "food";

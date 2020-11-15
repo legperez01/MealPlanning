@@ -16,13 +16,13 @@ services:
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=mysql
 
-  server:
+  api:
     image: legperez/food-server
     build:
       context: ./FoodServer
       dockerfile: Dockerfile.dev
-    ports: 
-      - '8080:8080'  
+    # ports: 
+    #   - '8080:8080'  
     volumes:
       - m2:/root/.m2
     depends_on: 
@@ -35,8 +35,8 @@ services:
     build: 
       dockerfile: Dockerfile.dev
       context: ./food-web  
-    ports: 
-      - '3000:3000' 
+    # ports: 
+    #   - '3000:3000' 
     stdin_open: true
     tty: true
     volumes: 
@@ -45,13 +45,13 @@ services:
     depends_on: 
       - server
     
-    nginx:
-        restart: always
-        build: 
-            dockerfile: Dockerfile.dev
-            context: ./nginx       
-        ports: 
-            - '3050:80'
+  nginx:
+    restart: always
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./nginx       
+    ports: 
+        - '3050:80'
       
 volumes:
   m2:
