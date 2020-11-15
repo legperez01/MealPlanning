@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RefreshScope
 @RestController
-@RequestMapping("api/meal")
+@RequestMapping("meal")
 public class MealController {
     
     @Autowired

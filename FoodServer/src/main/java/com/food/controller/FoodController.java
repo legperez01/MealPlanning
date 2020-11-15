@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RefreshScope
 @RestController
-@RequestMapping("api/food")
+@RequestMapping("food")
 public class FoodController {
     
     @Autowired
@@ -42,4 +42,8 @@ public class FoodController {
         return this.foodService.findByNameLike(name);
     }
     
+    @GetMapping("/test")
+    public String test(){
+        return "Hello World!!";
+    }
 }
