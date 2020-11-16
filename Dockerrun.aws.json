@@ -12,7 +12,7 @@
             "name": "api",
             "image": "legperez/food-server",
             "hostname": "server",
-            "essential": false,
+            "essential": true,
             "memory": 128
 
         }   
