@@ -2,7 +2,7 @@ import Axios from "axios";
 import Meal from "../entity/Meal";
 
 class FoodClient {
-  private static url = "http://mealplanning-env.eba-enmn6bpq.us-east-2.elasticbeanstalk.com:8080/api/";
+  private static url = "/api/";
 
   private static getFoodURL() {
     return this.url + "food";
