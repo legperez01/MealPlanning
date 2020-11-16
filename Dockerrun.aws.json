@@ -15,20 +15,20 @@
             "essential": false,
             "memory": 128
 
-        },    
-        {
-            "name": "nginx",
-            "image": "legperez/food-nginx",
-            "hostname": "nginx",
-            "essential": true,
-            "portMappings": [
-                {
-                    "hostPort": 80,
-                    "containerPort": 80
-                }
-            ],
-            "links": ["client", "api"],
-            "memory": 128
-        }
+        }   
+        // {
+        //     "name": "nginx",
+        //     "image": "legperez/food-nginx",
+        //     "hostname": "nginx",
+        //     "essential": true,
+        //     "portMappings": [
+        //         {
+        //             "hostPort": 80,
+        //             "containerPort": 80
+        //         }
+        //     ],
+        //     "links": ["client", "api"],
+        //     "memory": 128
+        // }
     ]
 }
